@@ -9,8 +9,6 @@ import {
 } from '@mui/material'
 import { IBranch } from '../../interfaces/interfaces'
 import ModalComponent from '../ModalComponent/ModalComponent'
-import Form from '../Form/Form'
-
 interface TableProps {
     branches: IBranch[] | undefined
 }
@@ -24,7 +22,7 @@ const formatTimestamp = (timestamp: string) => {
 }
 
 
-const inputs = {
+const handleOnSubmit = () => {
 
 }
 
@@ -50,7 +48,7 @@ export const TableComponent = ({ branches }: TableProps) => {
                                     <TableCell>{e.name}</TableCell>
                                     <TableCell>{formatTimestamp(e.createdAt)}</TableCell>
                                     <TableCell>{formatTimestamp(e.updatedAt)}</TableCell>
-                                    <TableCell><ModalComponent label='Editar' Form={<Form />} /></TableCell>
+                                    <TableCell><ModalComponent label='Editar' onSubmit={handleOnSubmit} /></TableCell>
                                     <TableCell><Button>Inactivar</Button></TableCell>
                                 </TableRow>
                             ))}

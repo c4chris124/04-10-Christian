@@ -20,9 +20,20 @@ const Branch = () => {
 
     }, [])
 
-    const onSubmit = () => {
+    const handleSubmit = () => {
 
     }
+
+    const inputs = (
+        <div>
+            <input> Nombre </input>
+            <input>  Direccion </input>
+            <input> Email </input>
+            <input> Departamento </input>
+            <input> Municipalidad </input>
+            <input> Numero </input>
+        </div>
+    )
 
 
     return (
@@ -30,7 +41,7 @@ const Branch = () => {
             <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <h1>Sucursales</h1>
             </div>
-            <ModalComponent label="Crear Nueva Sucursal" onSubmit={onSubmit} />
+            <ModalComponent label="Crear Nueva Sucursal" onSubmit={handleSubmit} />
 
             <TableComponent branches={state} />
         </div>

@@ -1,8 +1,7 @@
 'use client'
 import React, { useCallback, useState } from 'react'
-import { Box, Button, Typography, Modal } from '@mui/material'
-import Form from '../Form/Form';
-
+import { Box, Button, Typography, Modal, TextField } from '@mui/material'
+import { useForm } from '@/app/hooks/useForm';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -13,28 +12,36 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-
+  gap: 4
 };
 
 interface Props {
   label: string
-  Form?: React.ReactElement
   onSubmit: () => void
 }
 
 
 const ModalComponent: React.FC<Props> = ({
   label,
-  Form
 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = useCallback(() => {
     setOpen(true)
   }, [])
 
+  const { form, onChangeForm, name } = useForm({
+    name: '',
+    direction: '',
+    email: '',
+    department: '',
+    municipality: '',
+    phone: '',
+
+  })
+
   const handleClose = () => setOpen(false);
   return (
-    <div>
+    <>
       <Button onClick={handleOpen}>{label}</Button>
       <Modal
         keepMounted
@@ -44,15 +51,42 @@ const ModalComponent: React.FC<Props> = ({
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h5" component="h2" align='center'>
-            {label}
-          </Typography>
-          {/* Form */}
-          {Form}
+          <Box>
+            <Typography id="modal-modal-title" variant="h5" component="h2" align='center'>
+              {label}
+            </Typography>
+          </Box>
+          <Box>
+            {/* Form */}
+            <TextField
+              id="outlined-controlled"
+              label="Nombre"
+              value={name}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                onChangeForm(event.target.value, 'name')
+              }}
+            />
+            <TextField
+              id="outlined-controlled"
+              label="Nombre"
+              value={name}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                onChangeForm(event.target.value, 'name')
+              }}
+            />
+            <TextField
+              id="outlined-controlled"
+              label="Nombre"
+              value={name}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                onChangeForm(event.target.value, 'name')
+              }}
+            />
+          </Box>
         </Box>
       </Modal>
-    </div>
+    </>
   )
 }
 
-export default ModalComponent
+export default React.memo(ModalComponent)
