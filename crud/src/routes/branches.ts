@@ -72,6 +72,7 @@ router.post("/", async (req: Request, res: Response) => {
       department,
       municipality,
       phone,
+      category,
       isActive
     } = req.body as IBranch
     const newBranch = new BranchesModel({
@@ -81,9 +82,11 @@ router.post("/", async (req: Request, res: Response) => {
       department,
       municipality,
       phone,
+      category,
       isActive
     })
     await newBranch.save()
+    res.send(newBranch)
   } catch (error) {
     console.error(error)
   }

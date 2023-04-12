@@ -72,13 +72,16 @@ router.get("/activate/:id", async (req: Request, res: Response) => {
 // creates new category
 router.post("/", async (req: Request, res: Response) => {
   try {
-    const { category, description, isActive } = req.body as IProductCategory
+    const { category, description, branch, isActive } =
+      req.body as IProductCategory
     const newCategory = new ProductCategoryModel({
       category,
       description,
+      branch,
       isActive
     })
     await newCategory.save()
+    res.send(newCategory)
   } catch (error) {
     console.error(error)
   }

@@ -1,14 +1,16 @@
-import mongoose from "mongoose"
+import mongoose, { Schema } from "mongoose"
+import { IBranch1 } from "./Branch"
 
-interface IProductCategory extends Document {
+export interface IProductCategory1 extends Document {
   category: string
   description: string
   isActive: boolean
+  branch: IBranch1
   createdAt: Date
   updatedAt: Date
 }
 
-const ProductCategorySchema = new mongoose.Schema<IProductCategory>(
+const ProductCategorySchema = new mongoose.Schema<IProductCategory1>(
   {
     category: {
       type: String,
@@ -20,6 +22,10 @@ const ProductCategorySchema = new mongoose.Schema<IProductCategory>(
       required: true,
       trim: true
     },
+    branch: {
+      type: Schema.Types.ObjectId,
+      ref: "Branch"
+    },
     isActive: {
       type: Boolean,
       default: true
@@ -29,7 +35,7 @@ const ProductCategorySchema = new mongoose.Schema<IProductCategory>(
   { timestamps: true }
 )
 
-export const ProductCategoryModel = mongoose.model<IProductCategory>(
+export const ProductCategoryModel = mongoose.model<IProductCategory1>(
   "Category",
   ProductCategorySchema
 )

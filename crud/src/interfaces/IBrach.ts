@@ -1,3 +1,5 @@
+import { IProductCategory } from "./IProductCategory"
+
 export interface IBranch extends Document {
   name: string
   direction: string
@@ -5,5 +7,6 @@ export interface IBranch extends Document {
   department: string
   municipality: string
   phone: number
+  category: IProductCategory
   isActive: boolean
 }

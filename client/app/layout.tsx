@@ -1,4 +1,7 @@
+import ClientOnly from './components/ClientOnly'
+import Navbar from './components/Navbar/Navbar'
 import './globals.css'
+import { Providers } from './store/provider';
 
 export const metadata = {
   title: 'Evaluacion Tecnica',
@@ -12,7 +15,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ClientOnly>
+          <Navbar />
+          <Providers>
+            {children}
+          </Providers>
+        </ClientOnly>
+      </body>
     </html>
   )
 }
